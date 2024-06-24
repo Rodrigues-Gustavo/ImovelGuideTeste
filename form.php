@@ -6,14 +6,7 @@
     <title>Cadastro de Corretor</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f8f9fa;
-        }
+        
     </style>
 </head>
 <body>
@@ -33,11 +26,13 @@
                     <h1 class="text-center mb-4" id="form-title">Cadastro de Corretor</h1>
                     <form id="corretorForm" action="processa_form.php" method="post">
                         <input type="hidden" id="corretorId" name="id">
-                        <div class="form-group">
+                        <div class="row">
+                          <div class="form-group col-md-6">
                             <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF" required pattern="\d{11}" title="O CPF deve conter exatamente 11 dígitos" maxlength="11">
-                        </div>
-                        <div class="form-group">
+                          </div>
+                          <div class="form-group col-md-6">
                             <input type="text" class="form-control" id="creci" name="creci" placeholder="Digite seu Creci" required minlength="2" title="O Creci deve conter pelo menos 2 caracteres">
+                          </div>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Digite seu nome" required minlength="2" title="O Nome deve conter pelo menos 2 caracteres">
@@ -47,7 +42,7 @@
                 </div>
             </div>
         </div>
-
+    
         <div class="row justify-content-center mt-4">
             <div class="col-md-8">
                 <div class="card shadow">
@@ -147,8 +142,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
