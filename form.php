@@ -18,7 +18,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Caixinha de mensagem -->
         <?php if (isset($_GET['message'])): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php echo htmlspecialchars($_GET['message']); ?>
@@ -28,7 +27,6 @@
             </div>
         <?php endif; ?>
 
-        <!-- Formulário de Cadastro de Corretor -->
         <div class="row justify-content-center mt-4">
             <div class="col-md-6">
                 <div class="card p-4 shadow">
@@ -49,9 +47,7 @@
                 </div>
             </div>
         </div>
-        <!-- Fim do Formulário de Cadastro de Corretor -->
 
-        <!-- Tabela de Corretores Cadastrados -->
         <div class="row justify-content-center mt-4">
             <div class="col-md-8">
                 <div class="card shadow">
@@ -70,28 +66,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- PHP para listar os corretores cadastrados -->
+                     
                                 <?php
-                                // Configurações de conexão com o banco de dados
                                 $servername = "localhost";
                                 $username = "root";
-                                $password = ""; // Senha vazia para XAMPP
+                                $password = ""; 
                                 $dbname = "corretores_db";
-                                $port = 3306; // Porta padrão ou a porta configurada no XAMPP
+                                $port = 3306;
 
-                                // Conectar ao banco de dados
+                    
                                 $conn = new mysqli($servername, $username, $password, $dbname, $port);
 
-                                // Verificar conexão
                                 if ($conn->connect_error) {
                                     die("Conexão falhou: " . $conn->connect_error);
                                 }
 
-                                // Query SQL para buscar todos os corretores cadastrados
                                 $sql = "SELECT id, name, cpf, creci FROM corretores";
                                 $result = $conn->query($sql);
 
-                                // Exibir os resultados da consulta
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
@@ -102,7 +94,6 @@
                                         echo "<td>";
                                         echo "<button class='btn btn-primary btn-sm mr-2 editar-btn' data-id='" . $row["id"] . "' data-name='" . $row["name"] . "' data-cpf='" . $row["cpf"] . "' data-creci='" . $row["creci"] . "'>Editar</button>";
                                         
-                                        // Substituição para exclusão via POST
                                         echo "<form method='post' action='excluir_corretor.php' style='display:inline;'>";
                                         echo "<input type='hidden' name='id' value='" . $row["id"] . "'>";
                                         echo "<button type='submit' class='btn btn-danger btn-sm excluir-btn'>Excluir</button>";
@@ -123,14 +114,13 @@
                 </div>
             </div>
         </div>
-        <!-- Fim da Tabela de Corretores Cadastrados -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Preencher o formulário com os dados do corretor a ser editado
+
         $(document).ready(function() {
             $('.editar-btn').on('click', function() {
                 var id = $(this).data('id');
@@ -148,7 +138,6 @@
                 $('#corretorForm').attr('action', 'editar_corretor.php');
             });
 
-            // Resetar o formulário para modo de cadastro
             $('#corretorForm').on('reset', function() {
                 $('#form-title').text('Cadastro de Corretor');
                 $('#submitBtn').text('Enviar');
